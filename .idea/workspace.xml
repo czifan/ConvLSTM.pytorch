@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9e9e6c1-6e95-4909-9635-738b2c4a5404" name="Default Changelist" comment="" />
+    <list default="true" id="e9e9e6c1-6e95-4909-9635-738b2c4a5404" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/networks/BinaryDiceLoss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/build_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config_3x3_32_3x3_64_3x3_128.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/config_5x5_5x5_128_5x5_128.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config_3x3_16_3x3_32_3x3_64.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/config_5x5_5x5_128_5x5_64_5x5_64.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/config_5x5_5x5_256.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/ConvLSTM.py" beforeDir="false" afterPath="$PROJECT_DIR$/networks/ConvLSTM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/networks/CrossEntropyLoss.py" beforeDir="false" afterPath="$PROJECT_DIR$/networks/CrossEntropyLoss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/log/20200304_2211.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/log/20200304_2213.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/log/20200304_2215.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/functions.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +32,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1a1fVck215pZtq1C8qivHeW6DYf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -28,7 +52,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ConvLSTM">
+  <component name="RunManager" selected="Python.main">
     <configuration name="ConvLSTM" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConvLSTM.pytorch" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ConvLSTM" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.ConvLSTM" />
       </list>
     </recent_temporary>
   </component>
@@ -90,5 +114,16 @@
       <updated>1585908421345</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

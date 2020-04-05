@@ -31,8 +31,8 @@ class ConvLSTMBlock(nn.Module):
         '''
         outputs = []
         B, S, C, H, W = inputs.shape
-        hx = torch.zeros(B, self.num_features, H, W)
-        cx = torch.zeros(B, self.num_features, H, W)
+        hx = torch.zeros(B, self.num_features, H, W).to(inputs.device)
+        cx = torch.zeros(B, self.num_features, H, W).to(inputs.device)
         for t in range(S):
             combined = torch.cat([inputs[:, t], # (B, C, H, W)
                                   hx], dim=1)
@@ -74,15 +74,15 @@ class Encoder(nn.Module):
         :param x: (B, S, C, H, W)
         :return:
         '''
-        outputs = []
+        outputs = [x]
         for layer in self.layers:
             if 'conv_' in layer:
                 B, S, C, H, W = x.shape
                 x = x.view(B*S, C, H, W)
             x = getattr(self, layer)(x)
             if 'conv_' in layer: x = x.view(B, S, x.shape[1], x.shape[2], x.shape[3])
-            outputs.append(x)
-        return torch.cat(outputs[1:], dim=2)
+            if 'convlstm' in layer: outputs.append(x)
+        return outputs
 
 class Decoder(nn.Module):
     def __init__(self, config):
@@ -99,6 +99,7 @@ class Decoder(nn.Module):
             layers.append(nn.BatchNorm2d(out_ch))
             if activation == 'leaky': layers.append(nn.LeakyReLU(inplace=True))
             elif activation == 'relu': layers.append(nn.ReLU(inplace=True))
+            elif activation == 'sigmoid': layers.append(nn.Sigmoid())
         elif type == 'convlstm':
             layers.append(ConvLSTMBlock(in_ch, out_ch, kernel_size=kernel_size, padding=padding, stride=stride))
         elif type == 'deconv':
@@ -108,17 +109,24 @@ class Decoder(nn.Module):
             elif activation == 'relu': layers.append(nn.ReLU(inplace=True))
         return nn.Sequential(*layers)
 
-    def forward(self, x):
+    def forward(self, encoder_outputs):
         '''
         :param x: (B, S, C, H, W)
         :return:
         '''
+        idx = len(encoder_outputs)-1
         for layer in self.layers:
             if 'conv_' in layer or 'deconv_' in layer:
+                x = encoder_outputs[idx]
                 B, S, C, H, W = x.shape
                 x = x.view(B*S, C, H, W)
-            x = getattr(self, layer)(x)
-            if 'conv_' in layer: x = x.view(B, S, x.shape[1], x.shape[2], x.shape[3])
+                x = getattr(self, layer)(x)
+                x = x.view(B, S, x.shape[1], x.shape[2], x.shape[3])
+            elif 'convlstm' in layer:
+                idx -= 1
+                x = torch.cat([encoder_outputs[idx], x], dim=2)
+                x = getattr(self, layer)(x)
+                encoder_outputs[idx] = x
         return x
 
 class ConvLSTM(nn.Module):
@@ -134,7 +142,7 @@ class ConvLSTM(nn.Module):
 
 if __name__ == '__main__':
     from thop import profile
-    from configs.config_5x5_5x5_256 import config
+    from configs.config_3x3_16_3x3_32_3x3_64 import config
     model = ConvLSTM(config)
     flops, params = profile(model, inputs=(torch.Tensor(4, 10, 1, 64, 64),))
     print(flops / 1e9, params / 1e6)

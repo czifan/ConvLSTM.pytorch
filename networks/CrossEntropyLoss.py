@@ -13,6 +13,6 @@ class CrossEntropyLoss(nn.Module):
         super().__init__()
 
     def forward(self, outputs, targets):
-        loss = -torch.sum(targets * torch.log(outputs) +
+        loss = -torch.mean(targets * torch.log(outputs) +
                           (1-targets) * torch.log(1-outputs))
-        return torch.mean(loss)
+        return loss

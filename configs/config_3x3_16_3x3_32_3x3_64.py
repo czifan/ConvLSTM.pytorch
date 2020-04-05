@@ -31,17 +31,27 @@ class Config:
     input_size = (64, 64)
     step_length = 0.1
     num_objects = [3]
-    display = 1
+    display = 10
     draw = 10
     train_dataset = (0, 10000)
     valid_dataset = (10000, 12000)
     test_dataset = (12000, 15000)
-    epochs = 1
+    epochs = 100
 
     # (type, activation, in_ch, out_ch, kernel_size, padding, stride)
-    encoder = [('conv', 'leaky', 1, 64, 5, 2, 1),
-             ('convlstm', '', 64, 256, 5, 2, 1)]
-    decoder = [('conv', '', 256, 1, 1, 0, 1)]
+    encoder = [('conv', 'leaky', 1, 16, 3, 1, 2),
+             ('convlstm', '', 16, 16, 3, 1, 1),
+             ('conv', 'leaky', 16, 32, 3, 1, 2),
+             ('convlstm', '', 32, 32, 3, 1, 1),
+             ('conv', 'leaky', 32, 64, 3, 1, 2),
+             ('convlstm', '', 64, 64, 3, 1, 1)]
+    decoder = [('deconv', 'leaky', 64, 32, 4, 1, 2),
+               ('convlstm', '', 64, 32, 3, 1, 1),
+               ('deconv', 'leaky', 32, 16, 4, 1, 2),
+               ('convlstm', '', 32, 16, 3, 1, 1),
+               ('deconv', 'leaky', 16, 16, 4, 1, 2),
+               ('convlstm', '', 17, 16, 3, 1, 1),
+               ('conv', 'sigmoid', 16, 1, 1, 0, 1)]
 
     data_dir = os.path.join(root_dir, 'data')
     output_dir = os.path.join(root_dir, 'output')

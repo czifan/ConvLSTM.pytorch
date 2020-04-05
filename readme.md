@@ -16,17 +16,16 @@ pip install requirements.txt
 ## Quick start
 Running the code with the following command, and the '--config' parameter represents different network architectures.
 ```
-python main.py --config 5x5_5x5_128_5x5_64_5x5_64
+python main.py --config 3x3_16_3x3_32_3x3_64
 ```
 
 ## Results
-| Model | Parameters(M) | Flops(G) | MSELoss |
+| Model | Parameters(M) | Flops(G) | DiceLoss |
 |---|---|---|---|
-| ConvLSTM(5x5-64)-5x5-256 | | | | 
-| ConvLSTM(5x5-64)-5x5-128-5x5-128| 5.74 | 940.55 | | 
-| ConvLSTM(5x5-64)-5x5-128-5x5-64-5x5-64| 4.51 | 739.23 | |
-
-
+| 3x3_16_3x3_32_3x3_64 | | | 0.682311 | 
+| 3x3_32_3x3_64_3x3_128 | | | 0.665905 |
+![result](output/cache/099_00010.png)
+![result](output/cache/099_00030.png)
 ## Citation
 
 ```

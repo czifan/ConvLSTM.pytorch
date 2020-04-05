@@ -79,7 +79,7 @@ class MovingMNISTDataset(Dataset):
         inputs = torch.from_numpy(images[:self.num_frames_input]).permute(0, 3, 1, 2).contiguous()
         outputs = torch.from_numpy(images[self.num_frames_input:]).permute(0, 3, 1, 2).contiguous()
 
-        inputs = inputs / 255.
+        inputs = (inputs / 255.) > 0.
         outputs = outputs / 255.
 
         return inputs, outputs

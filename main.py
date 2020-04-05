@@ -7,7 +7,6 @@ from __future__ import division
 from __future__ import print_function
 import os
 import numpy as np
-from configs.build_config import build_config
 from utils.dataset import MovingMNISTDataset
 from networks.ConvLSTM import ConvLSTM
 import torch
@@ -17,7 +16,8 @@ from utils.utils import build_logging
 from utils.functions import train
 from utils.functions import valid
 from utils.functions import test
-from networks.CrossEntropyLoss import CrossEntropyLoss
+#from networks.CrossEntropyLoss import CrossEntropyLoss
+from networks.BinaryDiceLoss import BinaryDiceLoss
 import argparse
 import matplotlib
 matplotlib.use('agg')
@@ -25,19 +25,21 @@ import matplotlib.pyplot as plt
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default='5x5_5x5_128_5x5_64_5x5_64')
+    parser.add_argument('--config', type=str, default='3x3_16_3x3_32_3x3_64')
     args = parser.parse_args()
     return args
 
 def main():
     args = get_args()
     name = args.config
-    config = build_config(name)
+    if name == '3x3_16_3x3_32_3x3_64': from configs.config_3x3_16_3x3_32_3x3_64 import config
+    elif name == '3x3_32_3x3_64_3x3_128': from configs.config_3x3_32_3x3_64_3x3_128 import config
     logger = build_logging(config)
     model = ConvLSTM(config).to(config.device)
     #criterion = CrossEntropyLoss().to(config.device)
-    criterion = torch.nn.MSELoss().to(config.device)
-    optimizer = torch.optim.RMSprop(model.parameters(), lr=1e-3)
+    #criterion = torch.nn.MSELoss().to(config.device)
+    criterion = BinaryDiceLoss().to(config.device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
     train_dataset = MovingMNISTDataset(config, split='train')
     train_loader = DataLoader(train_dataset, batch_size=config.train_batch_size,
