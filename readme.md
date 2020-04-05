@@ -22,9 +22,10 @@ python main.py --config 3x3_16_3x3_32_3x3_64
 ## Results
 | Model | Parameters(M) | Flops(G) | DiceLoss |
 |---|---|---|---|
-| 3x3_16_3x3_32_3x3_64 | | | 0.682311 | 
-| 3x3_32_3x3_64_3x3_128 | | | 0.665905 |
-
+| 3x3_16_3x3_32_3x3_64 | 0.61 | 9.19 | 0.682311 | 
+| 3x3_32_3x3_64_3x3_128 | 2.45 | 36.35 | 0.665905 |
+* Note: In order to reduce the number of parameters and flops, 
+we did not strictly follow the model architecture in the paper, but modified it into unet style structure.
 ![result1](output/cache/099_00010.png)
 ![result2](output/cache/099_00030.png)
 ## Citation
