@@ -24,8 +24,9 @@ python main.py --config 3x3_16_3x3_32_3x3_64
 |---|---|---|---|
 | 3x3_16_3x3_32_3x3_64 | | | 0.682311 | 
 | 3x3_32_3x3_64_3x3_128 | | | 0.665905 |
-![result](output/cache/099_00010.png)
-![result](output/cache/099_00030.png)
+
+![result1](output/cache/099_00010.png)
+![result2](output/cache/099_00030.png)
 ## Citation
 
 ```
