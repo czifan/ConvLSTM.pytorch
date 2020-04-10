@@ -3,7 +3,7 @@
 This repository is an unofficial pytorch implementation of 
 [Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting](https://arxiv.org/abs/1506.04214v1).
 We reimplement the experiments in the paper based on the MovingMNIST dataset, which is followed by [Github](https://github.com/jhhuang96/ConvLSTM-PyTorch).
-Detailed understanding is available on my [Blog](https://www.cnblogs.com/CZiFan/).
+Detailed understanding is available on my [Blog](https://www.cnblogs.com/CZiFan/p/12630949.html).
 
 ## Requirements
 - Pytorch>=0.4.0
