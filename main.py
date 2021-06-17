@@ -54,9 +54,9 @@ def main():
     for epoch in range(config.epochs):
         epoch_records = train(config, logger, epoch, model, train_loader, criterion, optimizer)
         train_records.append(np.mean(epoch_records['loss']))
-        valid_records = valid(config, logger, epoch, model, valid_loader, criterion)
+        epoch_records = valid(config, logger, epoch, model, valid_loader, criterion)
         valid_records.append(np.mean(epoch_records['loss']))
-        test_records = test(config, logger, epoch, model, test_loader, criterion)
+        epoch_records = test(config, logger, epoch, model, test_loader, criterion)
         test_records.append(np.mean(epoch_records['loss']))
         plt.plot(range(epoch + 1), train_records, label='train')
         plt.plot(range(epoch + 1), valid_records, label='valid')
