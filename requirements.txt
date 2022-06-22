@@ -1,4 +1,4 @@
 thop==0.0.31.post1910280903
-numpy==1.17.3
+numpy==1.22.0
 matplotlib==3.1.2
 torch==1.4.0+cpu
